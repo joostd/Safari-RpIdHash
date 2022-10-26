@@ -4,22 +4,26 @@ Simple, quick & dirty WebAuthn demo to illustrate an issue with Safari 16.0, 16.
 
 ## The issue
 
-The issue with Safari is when using a U2F (CTAP1) security key, the WebAuthn `navigator.credential.create` call returns an attestation object with a non-matching RP Id Hash.
+The seems to be an issue with Apple's Safari browser implementation of WebAuthn.
+When using a U2F (CTAP1) security key, the WebAuthn `navigator.credential.create` call returns an attestation object with a non-matching RP Id Hash.
 
 See the Webauthn spec's definition of <a href="https://www.w3.org/TR/webauthn-2/#relying-party-identifier">relying-party-identifier</a>:
-<em>
-RP ID - a valid domain string identifying the WebAuthn Relying Party [...]
+
+- RP ID - a valid domain string identifying the WebAuthn Relying Party [...]
 By default, the RP ID for a WebAuthn operation is set to the caller's origin's effective domain.</em>
+
 and
-<em>
-rpIdHash (32 bytes): SHA-256 hash of the RP ID the credential is scoped to.
-</em>
+
+- rpIdHash (32 bytes): SHA-256 hash of the RP ID the credential is scoped to.
 
 The problem arises when the RP verifies the RpIdHash when for instance registering a new credential:
 See the WebAuthn spec for the procedure for <a href="https://www.w3.org/TR/webauthn-2/#sctn-registering-a-new-credential">registering-a-new-credential</a>:
-<em>
-13. Verify that the rpIdHash in authData is the SHA-256 hash of the RP ID expected by the Relying Party.
-</em>
+
+- 13 Verify that the rpIdHash in authData is the SHA-256 hash of the RP ID expected by the Relying Party.
+
+Note that this issue only occurs with U2F (CTAP1). When using a FIDO2 security key (CTAP2) the resulting RpIdHash is correct.
+
+# Installing the demo
 
 ## Install locally
 
