@@ -3,7 +3,7 @@ include("../vendor/autoload.php");
 
 use CBOR\CBOREncoder;
 
-// https://www.w3.org/TR/webauthn-2/#index-defined-here
+// https://www.w3.org/TR/webauthn-2/#relying-party-identifier
 // RP ID - a valid domain string identifying the WebAuthn Relying Party 
 // By default, the RP ID for a WebAuthn operation is set to the caller’s origin's effective domain.
 
