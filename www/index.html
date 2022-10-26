@@ -3,43 +3,45 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Webauthn</title>
+    <title>Extract RP ID Hash</title>
 </head>
 
 <body>
 
 <script>
 function register() {
-    // register / create a new credential
     navigator.credentials.create(createCredentialDefaultArgs)
     .then((cred) => {
         console.log("PublicKeyCredential:");
         console.log(cred);
-        // id and type inherited from Credential interface
         console.assert(cred.type == 'public-key');
-        console.log(".id: " + cred.id); // base64urlencoded
-        console.log(".rawId: " + bufferToHex(cred.rawId)); // ArrayBuffer
-
-        console.log(".response:");	// 
-        console.log(cred.response);	// AuthenticatorAttestationResponse
-        // clientDataJSON inherited from AuthenticatorResponse
-        console.log("clientDataJSON: " + bufferToHex(cred.response.clientDataJSON)); // ArrayBuffer
-        console.log("attestationObject: " + bufferToHex(cred.response.attestationObject)); // ArrayBuffer
-        // cred.id, clientDataJSON, and attestationObject are sent back to server
+        console.log(".id: " + cred.id);
+        console.log(".rawId: " + bufferToHex(cred.rawId));
+        console.log(".response:");
+        console.log(cred.response);
+        console.log("clientDataJSON: " + bufferToHex(cred.response.clientDataJSON));
+        console.log("attestationObject: " + bufferToHex(cred.response.attestationObject));
         document.getElementById("registerForm").elements.namedItem("credId").value = cred.id;
         document.getElementById("registerForm").elements.namedItem("clientDataJSON").value = bufferToHex(cred.response.clientDataJSON);
         document.getElementById("registerForm").elements.namedItem("attestationObject").value = bufferToHex(cred.response.attestationObject);
 	cborme = "https://cbor.me/?bytes=" + bufferToHex(cred.response.attestationObject);
-        log(`Done, please submit to send data to the server, or view using <a href='${ cborme }'>cbor.me</a>`);
+        log(`Done, please submit to send data to the server, or view using <a href='${ cborme }' target="_blank">cbor.me</a>`);
     }).catch((err) => {console.error("oops:" + err)});
-
 };
+
+function copyHexData() {
+  var copyText = document.getElementById("registerForm").elements.namedItem("attestationObject");
+  copyText.select();
+  copyText.setSelectionRange(0, 1000);
+  navigator.clipboard.writeText(copyText.value);
+  log("hex data copied to pasteboard");
+}
 </script>
 
 <div id="container">
     <h1>RP ID Hash test</h1>
     <div id="result" class="status"></div>
-    <button id="register" onClick=register()>navigator.credentials.create</button>
+    <button onClick="register()">navigator.credentials.create</button>
     <form id="registerForm" method="post" action="register.php">
         <input type="hidden" name="clientDataJSON" />
 	<textarea name="attestationObject" rows="8" cols="64" readonly>
@@ -48,6 +50,7 @@ function register() {
 	<br/>
         <input type="submit" value="submit" />
     </form>
+    <button onclick="copyHexData()">Copy hex data</button>
 </div>
 
 <div id="message" class="info">Enable javascript console to view log messages</div>

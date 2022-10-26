@@ -69,3 +69,15 @@ Instead of submitting the form with `attestationObject` data, click the link to 
 
 See <a href="https://cbor.me/?bytes=a363666d74646e6f6e656761747453746d74a068617574684461746158c449960de5880e8c687434170f6476605b8fe4aeb9a28632c7995cf3ba831d9763450000011c000000000000000000000000000000000040d2a024df249af06f9e5e1e297b02d3092a6ca38907389346a290eff38966ab31699a00613af0fbc78d927681dbd978daca242c69541c2c823507c18e3aa9eaffa50102032620012158202a8b5bfa47cdb5f4bfc0b164865a21f61080bf064c59dc205bfc56aa1bcd066222582066b947585458d39c2a918ca578ed33a8167504ce20438c007cbb61857290fa57">this</a> URL as an example.
 
+###
+
+Alternatively, you can use command line tools like <a href="https://www.npmjs.com/package/cbor-cli">cbor-cli</a> and <a href="https://stedolan.github.io/jq/">jq</a> to decode the `attestationObject`:
+
+    brew install npm
+    npm install -g cbor-cli
+    brew install jq
+
+Copy the hex data output to your pasteboard (the Clipboard) and run the following from the command line to extract the RP Hash ID::
+
+    pbpaste | xxd -r -p | cbor2json | jq '.authData.data | .[0:32] | .[]' | perl -ne 'printf("%02x",$_)'
+

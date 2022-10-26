@@ -24,8 +24,12 @@ error_log( 'rpIdHash:' . bin2hex($rpIdHash) );
 // https://www.w3.org/TR/webauthn-2/#sctn-registering-a-new-credential
 // 13. Verify that the rpIdHash in authData is the SHA-256 hash of the RP ID expected by the Relying Party.
 
-//assert($hash === $rpIdHash);
-
 echo '<li><b>sha256('.$rpId.'):</b>' . $hash;
 echo '<li><b>rpIdHash:</b>' . bin2hex($rpIdHash);
+
+if($hash !== bin2hex($rpIdHash)) {
+  echo "<h3>RP Id Hash does not match hash in attestationObject!</h3>";
+  echo "UserAgent:". $_SERVER['HTTP_USER_AGENT'];
+}
+
 echo "<hr/><a href='/'>again</a>";
