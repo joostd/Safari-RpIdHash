@@ -44,7 +44,7 @@ Note that
 
 ## Running the demo
 
-The simplest way to run the demo is to point your Safari browser to <a href="https://rpid.joostd.nl">rpid.joostd.nl</a> and click the `navigator.credential.create` button.
+The simplest way to run the demo is to point your Safari browser to <a href="https://rpid.joostd.nl">rpid.joostd.nl</a> and click the `navigator.credentials.create` button.
 
 ### Run locally
 
