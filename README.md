@@ -45,7 +45,7 @@ Note that
 - the issue is not observed with any other browsers I tested (Google Chrome, Miscrosoft Edge, Firefox and Brave).
 - the issue is also not obverved with Mobile Safari (tested on iOS 16.1).
 - in my tests when there is a mismatch I always see the RpIdHash value `a54672b222c4cf95e151ed8d4d3c767a6cc349435943794e884f3d023a8229fd` returned from the security key.
-- some users have reported intermittend occurences of the issue.
+- some users have reported intermittent occurences of the issue.
 
 ## Running the demo
 
