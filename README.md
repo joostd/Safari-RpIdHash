@@ -6,6 +6,7 @@ Simple, quick & dirty WebAuthn demo to illustrate an issue with Safari 16.0, 16.
 
 There seems to be an issue with Apple's Safari browser implementation of WebAuthn.
 When using a U2F (CTAP1) security key, the WebAuthn `navigator.credential.create` call returns an attestation object with a non-matching RP Id Hash.
+You can track this issue on the [Webkit Bugzilla](https://bugs.webkit.org/show_bug.cgi?id=247344).
 
 ### What is an RP ID Hash?
 
@@ -26,7 +27,7 @@ See the WebAuthn spec for the procedure for <a href="https://www.w3.org/TR/webau
 
 Note that this issue occurs only with U2F (CTAP1) security keys.
 When using a FIDO2 security key (CTAP2) the resulting RpIdHash is correct.
-There seems to be another bug in Safari however, that will intermittently prevent you from using CTAP2.
+There seems to be [another bug in Safari](https://bugs.webkit.org/show_bug.cgi?id=231043) however, that will intermittently prevent you from using CTAP2.
 When using a CTAP1+CTAP2 security key like a Yubikey (5 series), it may fallback to CTAP1 and the RP ID Hash issue will be triggered.
 If you disable CTAP1 or use a CTAP2-only security key, Safari may not recognize your security key and you can only cancel out of the modal Webauthn dialog to proceed.
 
