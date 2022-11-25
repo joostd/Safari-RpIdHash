@@ -1,6 +1,7 @@
 # Safari RpIdHash
 
 Simple, quick & dirty WebAuthn demo to illustrate an issue with Safari 16.0, 16.1 (and possibly earlier versions).
+This bug has been confirmed by Apple and can be tracked on the <a href="https://bugs.webkit.org/show_bug.cgi?id=247344">Webkit Bugzilla</a>
 
 ## The issue
 
