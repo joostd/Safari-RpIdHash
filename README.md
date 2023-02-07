@@ -1,6 +1,6 @@
 # Safari RpIdHash
 
-Simple, quick & dirty WebAuthn demo to illustrate an issue with Safari 16.0, 16.1 (and possibly earlier versions).
+Simple, quick & dirty WebAuthn demo to illustrate an issue with Safari 16.0 through 16.3 (and possibly earlier versions).
 This bug has been confirmed by Apple and can be tracked on the <a href="https://bugs.webkit.org/show_bug.cgi?id=247344">Webkit Bugzilla</a>
 
 ## The issue
@@ -42,7 +42,7 @@ With a YubiKey 5, you can disable FIDO2 to enforce the use of CTAP1 using <a hre
 Note that
 
 - as stated above: the issue does not seem to occur with FIDO2 (CTAP2) security keys (unless the CTAP2-bug also occurs, see the remark above)).
-- the issue is observed with Safari versions 16.0 and 16.1, and may possible be present on older versions as well.
+- the issue is observed with Safari versions 16.0 through 16.3, and may possible be present on older versions as well.
 - the issue is not observed with any other browsers I tested (Google Chrome, Miscrosoft Edge, Firefox and Brave).
 - the issue is also not obverved with Mobile Safari (tested on iOS 16.1).
 - in my tests when there is a mismatch I always see the RpIdHash value `a54672b222c4cf95e151ed8d4d3c767a6cc349435943794e884f3d023a8229fd` returned from the security key.
