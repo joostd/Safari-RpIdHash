@@ -87,7 +87,7 @@ Note that by default *anyone* can connect to that URL so be careful and kill you
 
 ## Other sites that demonstrate the issue
 
-There are many other sites that suffer from this issue.
+There are many other sites that can be used to demonstrate this issue.
 You can find some examples below.
 
 ### Yubico demo website
